@@ -1,7 +1,10 @@
 .die {
-    height: 50px;
-    width: 50px;
-    border: 2px;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    margin: 20px;
+    border: 3px solid black;
     display: inline-block;
     text-align: center;
+    font-size: 4em;
 }

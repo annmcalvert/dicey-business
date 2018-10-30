@@ -5,13 +5,29 @@ class Die {
 
     roll() {
         let value = Math.floor((Math.random() * 6) + 1);
-        console.log(value);
+        return value;
     }
 }
 
-let die1 = new Die();
-die1.roll();
+let dieCounter = 1;
 
-$('#generateDie').click(function() {
-    let text
+$('#testBtn').click(function () {
+    dieArray[0].roll();
 })
+
+$('#generateDie').click(function () {
+    let die = new Die();
+    let dieValue = die.roll();
+    dieArray.push(die);
+    console.log(dieArray);
+
+    let dieDiv = $('<div>').text(dieValue);
+    $(dieDiv).attr('id', dieCounter);
+    $(dieDiv).addClass('die');
+    $('#div').append(dieDiv);
+
+    dieCounter++
+}
+)
+
+let dieArray = [];

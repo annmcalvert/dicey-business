@@ -1,7 +1,3 @@
-//die generation, random value, and array are working
-//.roll() - I need to figure out how to push the new value to array
-//do I need both firstValue and .roll()?
-
 let dieArray = [];
 let dieCounter = 1;
 
@@ -27,21 +23,21 @@ class Die {
     }
 }
 
-
 $('#rollBtn').click(function () {
-    dieArray.forEach(function(i) {
+    dieArray.forEach(function (i) {
         i.roll();
     })
-
-
-    console.log(dieArray[0].value);
 })
 
 $('#generateDieBtn').click(function () {
     let die = new Die();
     dieArray.push(die);
-    console.log(dieArray);
     dieCounter++
-}
-)
+})
 
+$('#SumBtn').click(function () {
+    let sum = dieArray.reduce((acc, i) => {
+        return acc + i.value;
+    },0)
+    alert(`The sum of all the die is ${sum}`);
+})

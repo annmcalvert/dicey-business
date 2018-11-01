@@ -10,7 +10,6 @@ class Die {
         $(dieDiv).attr('id', `die${dieCounter}`);
         $(dieDiv).addClass('die');
         $('#div').append(dieDiv);
-
     }
 
     generateNumber() {
@@ -38,6 +37,14 @@ $('#generateDieBtn').click(function () {
 $('#SumBtn').click(function () {
     let sum = dieArray.reduce((acc, i) => {
         return acc + i.value;
-    },0)
+    }, 0)
     alert(`The sum of all the die is ${sum}`);
+})
+
+$(document).on('click', '.die', function () {
+    let id = `${$(this).attr('id')}`;
+    let thisObj = dieArray.find((i) => {
+        return i.name === id;
+    })
+    thisObj.roll();
 })

@@ -8,7 +8,8 @@ class Die {
         this.value = this.generateNumber();
 
         let dieDiv = $('<div>').text(this.value);
-        $(dieDiv).attr('id', `die${dieCounter}`);
+        //$(dieDiv).attr('id', `die${dieCounter}`);
+        $(dieDiv).attr('id', this.name);
         $(dieDiv).addClass('die');
         $('#div').append(dieDiv);
     }

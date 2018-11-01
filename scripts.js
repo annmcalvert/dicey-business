@@ -1,33 +1,47 @@
+//die generation, random value, and array are working
+//.roll() - I need to figure out how to push the new value to array
+//do I need both firstValue and .roll()?
+
+let dieArray = [];
+let dieCounter = 1;
+
 class Die {
-    constructor(value) {
-        this.value = value;
+    constructor() {
+        this.name = `die${dieCounter}`;
+        this.value = this.generateNumber();
+
+        let dieDiv = $('<div>').text(this.value);
+        $(dieDiv).attr('id', `die${dieCounter}`);
+        $(dieDiv).addClass('die');
+        $('#div').append(dieDiv);
+
+    }
+
+    generateNumber() {
+        return Math.floor((Math.random() * 6) + 1);
     }
 
     roll() {
-        let value = Math.floor((Math.random() * 6) + 1);
-        return value;
+        this.value = this.generateNumber();
+        $(`#${this.name}`).text(this.value);
     }
 }
 
-let dieCounter = 1;
 
-$('#testBtn').click(function () {
-    dieArray[0].roll();
+$('#rollBtn').click(function () {
+    dieArray.forEach(function(i) {
+        i.roll();
+    })
+
+
+    console.log(dieArray[0].value);
 })
 
-$('#generateDie').click(function () {
+$('#generateDieBtn').click(function () {
     let die = new Die();
-    let dieValue = die.roll();
     dieArray.push(die);
     console.log(dieArray);
-
-    let dieDiv = $('<div>').text(dieValue);
-    $(dieDiv).attr('id', dieCounter);
-    $(dieDiv).addClass('die');
-    $('#div').append(dieDiv);
-
     dieCounter++
 }
 )
 
-let dieArray = [];

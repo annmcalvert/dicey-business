@@ -6,12 +6,15 @@ class Die {
     constructor() {
         this.name = `die${dieCounter}`;
         this.value = this.generateNumber();
-
         let dieDiv = $('<div>').text(this.value);
-        //$(dieDiv).attr('id', `die${dieCounter}`);
         $(dieDiv).attr('id', this.name);
         $(dieDiv).addClass('die');
         $('#div').append(dieDiv);
+
+        //.roll() is called when the div is clicked
+        $(dieDiv).click(() => {
+            this.roll();
+        });
     }
 
     //generates a number between 1 and 6
@@ -31,14 +34,14 @@ $('#generateDieBtn').click(function () {
     let die = new Die();
     dieArray.push(die);
     dieCounter++
-})
+});
 
 //calls .roll() for every die
 $('#rollBtn').click(function () {
     dieArray.forEach(function (i) {
         i.roll();
     })
-})
+});
 
 //alerts the sum of the dice
 $('#SumBtn').click(function () {
@@ -46,18 +49,7 @@ $('#SumBtn').click(function () {
         return acc + i.value;
     }, 0)
     alert(`The sum of all the die is ${sum}`);
-})
-
-//when div with class .die is clicked, the id for that div is retrieved
-//the object with the same name as the div id is then returned
-//that object is rolled.
-$(document).on('click', '.die', function () {
-    let id = $(this).attr('id');
-    let thisObj = dieArray.find((i) => {
-        return i.name === id;
-    })
-    thisObj.roll();
-})
+});
 
 //when div with class .die is double clicked, the id for that div is retrieved
 //the div is removed from the html
@@ -70,4 +62,4 @@ $(document).on('dblclick', '.die', function () {
         return i.name === id;
     })
     dieArray.splice(thisIndex, 1);
-})
+});
